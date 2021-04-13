@@ -1,0 +1,95 @@
+﻿@{
+    ViewData["Title"] = "Burial Page";
+}
+
+@model ViewBurialsViewModel
+<!-- Page Content -->
+<div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3">
+        The Mummies
+    </h1>
+
+
+    <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+
+
+            @foreach (var b in Model.Burials)
+            {
+
+                <!-- Blog Post -->
+                <div class="card mb-4">
+                    <h2 class="card-header">@b.NS @b.NSTop/@b.NSBottom @b.EW @b.EWTop/@b.EWBottom #@b.BurialNumber </h2>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <ul class="list-unstyled mb-0">
+                                <li>West To Head: @b.Burialwesttohead</li>
+                                <li>West To Feet: @b.Burialwesttofeet</li>
+                                <li>Burial Goods: @b.Goods</li>
+                                <li>Length: @b.Length</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6">
+                            <ul class="list-unstyled mb-0">
+                                <li>South To Head: @b.Burialsouthtohead</li>
+                                <li>South To Feet: @b.Burialwesttofeet</li>
+                                <li>Burial Depth: @b.Burialdepth</li>
+                                <li>Gender: @b.GenderCode</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <h4 class="card-text">Notes:</h4>
+                    <p>@b.OsteologyNotes</p>
+                    <h5>Entered on January 1, 2017 By XXX  </h5>
+                    <button class="btn button1 right btn-Dark" onclick="location.href='@Url.Action("ViewMummy", "Home", b)'">Learn More &rarr;</button>
+                </div>
+            }
+
+            <!-- Pagination -->
+            <div page-info="@Model.PageNumberingInfo"
+                 page-action="ViewBurials"
+                 page-classes-enabled="true"
+                 page-class="btn"
+                 page-class-normal="btn-outline-dark"
+                 page-class-selected="btn-dark"
+                 class="btn-group pull-right m-1">
+            </div>
+        </div>
+
+        <br />
+
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4">
+
+            <!-- Search Widget -->
+            <div class="card mb-4">
+                <h5 class="card-header">Search</h5>
+                <div class="card-body">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-append">
+                            <button class="btn btn-secondary" type="button">Go!</button>
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Side Widget -->
+            <div class="card my-4">
+                <h5 class="card-header">Side Widget</h5>
+                <div class="card-body">
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.row -->
+
+</div>
